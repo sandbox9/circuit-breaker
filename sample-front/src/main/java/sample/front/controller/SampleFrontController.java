@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import circuitbreaker.hystrix.HystrixCommandProxyCreator;
 import sample.front.service.SampleFrontService;
 
 @Controller

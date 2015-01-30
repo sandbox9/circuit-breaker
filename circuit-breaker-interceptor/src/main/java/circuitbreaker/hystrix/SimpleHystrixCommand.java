@@ -25,7 +25,6 @@ public class SimpleHystrixCommand extends HystrixCommand<Object> {
 	protected Object run() throws Exception {
 		
 		System.out.println("HystrixCall");
-		
 		return method.invoke(target, args);
 	}
 
