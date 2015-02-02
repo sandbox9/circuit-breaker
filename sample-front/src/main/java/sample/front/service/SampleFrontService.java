@@ -4,6 +4,6 @@ public interface SampleFrontService {
 
 	String callSample();
 
-	String callSample2();
+	String callSample2(String sample1, Integer sample2);
 
 }
