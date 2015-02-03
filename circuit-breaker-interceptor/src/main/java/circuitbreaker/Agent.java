@@ -31,7 +31,7 @@ public class Agent {
                     	ClassPool cp = ClassPool.getDefault();
                     	CtClass cc = cp.get("sample.front.service.SampleFrontServiceImpl");
                     	
-                    	wrappedHystixMethods(cc);
+                    	wrappingHystixMethods(cc);
                     	
                     	cc.writeFile();
                     	byte[] bytecode = cc.toBytecode();
@@ -46,7 +46,7 @@ public class Agent {
                 return null;
             }
 
-			private void wrappedHystixMethods(CtClass cc) throws CannotCompileException, NotFoundException {
+			private void wrappingHystixMethods(CtClass cc) throws CannotCompileException, NotFoundException {
 				
 				CtMethod[] methods = cc.getDeclaredMethods();
 				for(CtMethod method : methods) {

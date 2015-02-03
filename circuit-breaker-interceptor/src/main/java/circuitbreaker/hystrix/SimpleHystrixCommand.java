@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 
 public class SimpleHystrixCommand extends HystrixCommand<Object> {
@@ -22,6 +23,7 @@ public class SimpleHystrixCommand extends HystrixCommand<Object> {
 	
 	public SimpleHystrixCommand(Object target, String methodName, Object[] parameters, Object[] parameterTypes) {
 		super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(target.getClass().getSimpleName()))
+					.andCommandKey(HystrixCommandKey.Factory.asKey(methodName))
 					.andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
 					.withExecutionIsolationThreadTimeoutInMilliseconds(100 * 1000))
 				);
