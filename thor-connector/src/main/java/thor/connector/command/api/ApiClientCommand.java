@@ -1,4 +1,4 @@
-package thor.command.api;
+package thor.connector.command.api;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;

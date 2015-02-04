@@ -1,4 +1,4 @@
-package thor.command.ui;
+package thor.connector.command.ui;
 
 /**
  * Created by chanwook on 2015. 2. 4..
