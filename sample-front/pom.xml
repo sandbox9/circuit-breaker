@@ -17,7 +17,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>circuit-breaker</groupId>
+			<groupId>sandbox9.thor</groupId>
 			<artifactId>circuit-breaker-interceptor</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
