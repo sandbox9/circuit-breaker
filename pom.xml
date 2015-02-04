@@ -12,6 +12,9 @@
 		<module>circuit-breaker-interceptor</module>
 		<module>sample-front</module>
         <module>thor-connector</module>
+        <module>thor-connector-api</module>
+        <module>thor-connector-ui</module>
+        <module>thor-connector-db-mybatis</module>
     </modules>
 
 	<build>
