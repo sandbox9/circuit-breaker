@@ -10,7 +10,6 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 public class HystrixMetricsStreamServletConfig {
 
 	
-	
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean(){
 	    return new ServletRegistrationBean(new HystrixMetricsStreamServlet(),"/hystrix.stream");

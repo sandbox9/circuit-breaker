@@ -23,5 +23,14 @@
             <artifactId>hystrix-metrics-event-stream</artifactId>
             <version>1.4.0-RC6</version>
         </dependency>
+
+<!-- 	RestTemplate을 사용하기 위한 임시 참조 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+        
+        
     </dependencies>
 </project>
