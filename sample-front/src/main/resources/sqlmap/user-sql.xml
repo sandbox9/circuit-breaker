@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 
-	<select id="getMember" parameterType="string" resultType="thor.connector.db.mybatis.model.Member">
+	<select id="getMember" parameterType="string" resultType="sample.front.model.Member">
 		SELECT ID, NAME, AGE, EMAIL
 		FROM MEMBER
 		where ID = #{id}
