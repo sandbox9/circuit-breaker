@@ -16,6 +16,7 @@ public class HystrixAspect implements MethodInterceptor  {
 		RequestMapping annotation = invocation.getMethod().getAnnotation(RequestMapping.class);
 		String url = annotation.value()[0];
 		
-		return new UICommand(url, invocation).execute();
+//		return new UICommand(url, invocation).execute();
+		return null;
 	}
 }

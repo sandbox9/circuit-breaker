@@ -36,7 +36,6 @@ public class ApiClientCommand<T> extends HystrixCommand<T> {
     @SuppressWarnings("unchecked")
     protected T run() throws Exception {
 
-//        Object result = new RestTemplate().getForObject(this.url, String.class);
         T result = executionCallback.execute();
         return result;
     }
