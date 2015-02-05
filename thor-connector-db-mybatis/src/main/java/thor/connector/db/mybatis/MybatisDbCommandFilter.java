@@ -1,25 +1,19 @@
 package thor.connector.db.mybatis;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
-
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-
 import thor.connector.command.CommandExecutionCallback;
 import thor.connector.command.db.DBCommand;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Properties;
 
 /**
  * Created by chanwook on 2015. 2. 4..
  */
-
 //MappedStatement.class,Object.class,RowBounds.class,ResultHandler.class
 @Intercepts({
 	@Signature(type=Executor.class,method="query",args={MappedStatement.class,Object.class,RowBounds.class,ResultHandler.class})
@@ -30,13 +24,12 @@ public class MybatisDbCommandFilter implements Interceptor {
 	
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
-	
 		String statementId = extractMappedStatementId(invocation);
-		return new DBCommand<Object>(statementId, new MybatisCommandExecutionCallback(invocation)).execute();
+        DBCommand command = new DBCommand(statementId, new MybatisCommandExecutionCallback(invocation));
+        return command.execute();
 	}
 
 	private String extractMappedStatementId(Invocation invocation) {
-		
 		MappedStatement ms = (MappedStatement) invocation.getArgs()[mappedStatementIndex];
 		return ms.getId();
 	}
@@ -48,10 +41,9 @@ public class MybatisDbCommandFilter implements Interceptor {
 
 	@Override
 	public void setProperties(Properties properties) {
-
 	}
 	
-	class MybatisCommandExecutionCallback implements CommandExecutionCallback<Object> {
+	private class MybatisCommandExecutionCallback implements CommandExecutionCallback<Object> {
 		
 		private Invocation invocation;
 		

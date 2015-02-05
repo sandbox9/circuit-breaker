@@ -6,6 +6,8 @@ import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import thor.connector.command.CommandExecutionCallback;
 
+import static thor.connector.command.EventType.API;
+
 /**
  * CommandGroup(Hystrix): 일단은 API 한 통으로 하나로 묶고 다시 생각 (TODO)
  * CommandName(Hystrix): API 별로 구분
@@ -14,28 +16,21 @@ import thor.connector.command.CommandExecutionCallback;
  */
 public class ApiClientCommand<T> extends HystrixCommand<T> {
 
-    private static String groupName = "API";
     private final CommandExecutionCallback<T> executionCallback;
 
-    private String url;
-
     public ApiClientCommand(String apiName, CommandExecutionCallback<T> executionCallback) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupName))
-                        .andCommandKey(HystrixCommandKey.Factory.asKey(groupName + " : " + apiName))
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(API.name()))
+                        .andCommandKey(HystrixCommandKey.Factory.asKey(API.name() + " : " + apiName))
                         .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
 //                				디버깅 테스트를 위해서 타임아웃 길게 설정
                                         .withExecutionIsolationThreadTimeoutInMilliseconds(1000 * 1000)
                         )
         );
-
-        this.url = apiName;
         this.executionCallback = executionCallback;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected T run() throws Exception {
-
         T result = executionCallback.execute();
         return result;
     }
