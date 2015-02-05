@@ -10,7 +10,6 @@ public class ApiMetadata<T> {
     private String apiName;
     private Object[] params;
     private Class<T> resultClass;
-    private HttpMethod method;
     private HttpMethod httpMethod;
 
     public void setApiName(String apiName) {
@@ -43,14 +42,6 @@ public class ApiMetadata<T> {
 
     public Class<T> getResultClass() {
         return resultClass;
-    }
-
-    public HttpMethod getMethod() {
-        return method;
-    }
-
-    public void setMethod(HttpMethod method) {
-        this.method = method;
     }
 
     public void setHttpMethod(HttpMethod httpMethod) {

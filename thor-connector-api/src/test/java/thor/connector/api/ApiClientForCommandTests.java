@@ -1,11 +1,12 @@
 package thor.connector.api;
 
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +35,7 @@ public class ApiClientForCommandTests {
 
     private class MockApiRegistry implements ApiRegistry {
         @Override
-        public <T> ApiMetadata getApiMeta(String apiName, Object[] params, Class<T> resultClass, HttpMethod httpMethod) {
+        public <T> ApiMetadata createApiMeta(String apiName, Object[] params, Class<T> resultClass, HttpMethod httpMethod) {
             ApiMetadata metadata = new ApiMetadata();
             if (API_NAME.equals(apiName)) {
                 metadata.setApiName(apiName);
@@ -49,12 +50,11 @@ public class ApiClientForCommandTests {
 
     private class MockRestTemplate extends RestTemplate {
         @Override
-        public <T> T getForObject(String url, Class<T> responseType, Map<String, ?> urlVariables) throws RestClientException {
+        public <T> ResponseEntity<T> exchange(String url, HttpMethod method, HttpEntity<?> requestEntity, Class<T> responseType, Object... uriVariables) throws RestClientException {
             if (API_URL.equals(url)) {
-                return (T) new Product((Integer) urlVariables.get("productId"));
+                return new ResponseEntity(new Product((Integer) uriVariables[0]), HttpStatus.OK);
             }
             throw new RuntimeException("잘못된 테스트케이스 값입니다!");
-
         }
     }
 }
