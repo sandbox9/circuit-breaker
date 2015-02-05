@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by chanwook on 2015. 2. 4..
  */
-public class UiCommandFilter implements Filter {
+public class UiCommandEventFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

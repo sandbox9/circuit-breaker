@@ -4,8 +4,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import thor.connector.command.CommandExecutionCallback;
 import thor.connector.command.api.ApiClientCommand;
-import thor.connector.command.api.CommandExecutionCallback;
 
 import java.net.URI;
 import java.net.URISyntaxException;
