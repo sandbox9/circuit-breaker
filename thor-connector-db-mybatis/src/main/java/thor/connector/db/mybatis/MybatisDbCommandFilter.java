@@ -5,6 +5,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+
 import thor.connector.command.CommandExecutionCallback;
 import thor.connector.command.db.DBCommand;
 
@@ -22,6 +23,7 @@ public class MybatisDbCommandFilter implements Interceptor {
 	
 	private final int mappedStatementIndex = 0;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		String statementId = extractMappedStatementId(invocation);

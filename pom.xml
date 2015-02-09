@@ -11,11 +11,11 @@
 		<module>sample-api2</module>
 		<module>circuit-breaker-interceptor</module>
 		<module>sample-front</module>
-        <module>thor-connector</module>
-        <module>thor-connector-api</module>
-        <module>thor-connector-ui</module>
-        <module>thor-connector-db-mybatis</module>
-    </modules>
+		<module>thor-connector</module>
+		<module>thor-connector-api</module>
+		<module>thor-connector-ui</module>
+		<module>thor-connector-db-mybatis</module>
+	</modules>
 
 	<build>
 		<plugins>
@@ -31,36 +31,45 @@
 		</plugins>
 	</build>
 
-    <dependencies>
-        <!-- log -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
-            <scope>provided</scope>
-        </dependency>
+	<dependencies>
+		<!-- log -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.7</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.7</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- log -->
-    </dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- log -->
+
+		<!-- for Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 </project>
