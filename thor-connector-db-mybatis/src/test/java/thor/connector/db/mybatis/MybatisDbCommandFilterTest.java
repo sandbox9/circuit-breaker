@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.mapping.MappedStatement.Builder;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.session.Configuration;
 import org.junit.After;
@@ -34,7 +37,7 @@ public class MybatisDbCommandFilterTest {
 		Mockito.when(invocation.proceed()).thenReturn(mockResult);
 
 		// final class라 Mock 객체를 생성할 수 없음 ...
-		Builder builder = new MappedStatement.Builder(new Configuration(), statementId, null, null);
+		Builder builder = new MappedStatement.Builder(new Configuration(), statementId, Mockito.mock(SqlSource.class), SqlCommandType.SELECT);
 		MappedStatement mappedStatement = builder.build();
 		Mockito.when(invocation.getArgs()).thenReturn(new Object[]{mappedStatement});
 
