@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>sandbox9.thor</groupId>
-	<artifactId>thor-parentpom</artifactId>
+	<groupId>fury.metrix</groupId>
+	<artifactId>metrix-parentpom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -11,10 +11,10 @@
 		<module>sample-api2</module>
 		<module>circuit-breaker-interceptor</module>
 		<module>sample-front</module>
-		<module>thor-connector</module>
-		<module>thor-connector-api</module>
-		<module>thor-connector-ui</module>
-		<module>thor-connector-db-mybatis</module>
+		<module>metrix-connector</module>
+		<module>metrix-connector-api</module>
+		<module>metrix-connector-ui</module>
+		<module>metrix-connector-db-mybatis</module>
 	</modules>
 
 	<build>

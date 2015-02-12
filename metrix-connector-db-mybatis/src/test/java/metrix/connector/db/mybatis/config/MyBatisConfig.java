@@ -1,4 +1,4 @@
-package sample.front.config;
+package metrix.connector.db.mybatis.config;
 
 import metrix.connector.db.mybatis.MybatisDbCommandFilter;
 import org.apache.ibatis.plugin.Interceptor;
@@ -15,16 +15,15 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 @Configuration
-public class MyBatisConfig  {
-	
+public class MyBatisConfig {
+
 	@Bean
 	public DataSource dataSource() {
 		
 		EmbeddedDatabase dataSource = new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
 				.addScript("classpath:hsqldb/schema.sql")
-				.addScript("classpath:hsqldb/data.sql")
-				.build();
+				.addScript("classpath:hsqldb/data.sql").build();
 		
 		return dataSource;
 	}

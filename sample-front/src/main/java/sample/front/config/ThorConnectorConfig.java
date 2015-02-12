@@ -1,18 +1,15 @@
 package sample.front.config;
 
-import javax.servlet.Filter;
-
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import metrix.connector.api.ApiClient;
+import metrix.connector.api.ApiRegistry;
+import metrix.connector.ui.UiCommandEventFilter;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import sample.front.connector.SimpleApiRegistry;
-import thor.connector.api.ApiClient;
-import thor.connector.api.ApiMetadata;
-import thor.connector.api.ApiRegistry;
-import thor.connector.ui.UiCommandEventFilter;
 
-import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import javax.servlet.Filter;
 
 @Configuration
 public class ThorConnectorConfig {

@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.http.HttpMethod;
 
-import thor.connector.api.ApiMetadata;
-import thor.connector.api.ApiRegistry;
+import metrix.connector.api.ApiMetadata;
+import metrix.connector.api.ApiRegistry;
 
 public class SimpleApiRegistry implements ApiRegistry {
 	

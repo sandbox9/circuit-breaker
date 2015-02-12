@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 
 import sample.front.model.Member;
 import sample.front.repository.MemberRepository;
-import thor.connector.api.ApiClient;
-import thor.connector.command.api.ApiClientCommand;
+import metrix.connector.api.ApiClient;
 
 @Service
 public class SampleFrontServiceImpl implements SampleFrontService {

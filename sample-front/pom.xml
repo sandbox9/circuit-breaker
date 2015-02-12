@@ -22,26 +22,26 @@
 		</dependency>
 
 		<dependency>
-			<groupId>sandbox9.thor</groupId>
-			<artifactId>thor-connector</artifactId>
+			<groupId>fury.metrix</groupId>
+			<artifactId>metrix-connector</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>sandbox9.thor</groupId>
-			<artifactId>thor-connector-ui</artifactId>
+			<groupId>fury.metrix</groupId>
+			<artifactId>metrix-connector-ui</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>sandbox9.thor</groupId>
-			<artifactId>thro-connector-api</artifactId>
+			<groupId>fury.metrix</groupId>
+			<artifactId>metrix-connector-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>sandbox9.thor</groupId>
-			<artifactId>thor-connector-db-mybatis</artifactId>
+			<groupId>fury.metrix</groupId>
+			<artifactId>metrix-connector-db-mybatis</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
