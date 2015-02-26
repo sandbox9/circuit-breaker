@@ -1,8 +1,12 @@
 package com.netflix.hystrix;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
+import metrix.connector.command.EventHistory;
 
 import com.netflix.hystrix.HystrixCommand.Setter;
 import com.netflix.hystrix.strategy.HystrixPlugins;
@@ -15,14 +19,15 @@ import com.netflix.hystrix.strategy.properties.HystrixPropertiesFactory;
  * @author jin
  *
  */
+
 public class MetrixCommandMetrics extends HystrixCommandMetrics {
+	
+	private List<EventHistory> eventHistoryList = new ArrayList<EventHistory>() ;
+	
 	
 //	모든 이벤트 타입이 MetrixCommandMetrics를 사용한다고 가정
 //	FIXME HystrixCommandMetrics의 reset()관련 처리가 되어야 함
 	private static final ConcurrentHashMap<String, HystrixCommandMetrics> metrics = new ConcurrentHashMap<String, HystrixCommandMetrics>();
-	
-//	데이터 확장 테스트 확인, HystrixCommand 단위
-	private String trailId = "testTrailId";
 	
 	MetrixCommandMetrics(HystrixCommandKey key, HystrixCommandGroupKey commandGroup,
 			HystrixCommandProperties properties, HystrixEventNotifier eventNotifier) {
@@ -83,13 +88,27 @@ public class MetrixCommandMetrics extends HystrixCommandMetrics {
     /* package */ static void reset() {
         metrics.clear();
     }
-
-	public String getTrailId() {
-		return trailId;
+    
+	public List<EventHistory> getEventHistoryList() {
+		return eventHistoryList;
 	}
 
-	public void setTrailId(String trailId) {
-		this.trailId = trailId;
+	protected void markExecution(EventHistory eventHistory) {
+		this.eventHistoryList.add(eventHistory);
 	}
 
+	public void markExceptionThrown(String eventId, Throwable failedExecutionException) {
+
+//		for(int i = eventHistoryList.size() - 1; i >= 0 ;i--) {
+			
+//			TODO 스레드로컬로 관리되는 trailID를 통해서 일단 구분하지만, Command는 스레드를 넘어서 공유되기 때문에 동시성 문제가 발생할 듯...
+//			fallback은 다른 스레드로 사용하기 때문에 구분할 수 없음...
+			EventHistory eventHistory = eventHistoryList.get(eventHistoryList.size() - 1);
+//			if(eventHistory.getId().equals(eventId)) {
+				eventHistory.setException(failedExecutionException);
+				eventHistory.setStatus("실패");
+//				break;
+//			}
+//		}
+	}
 }

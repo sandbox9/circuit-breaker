@@ -1,13 +1,12 @@
 package metrix.connector.command.api;
 
-import com.netflix.hystrix.HystrixCommand;
+import metrix.connector.command.CommandExecutionCallback;
+import metrix.connector.command.EventType;
+
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.MetrixCommand;
-
-import metrix.connector.command.CommandExecutionCallback;
-import metrix.connector.command.EventType;
 
 /**
  * CommandGroup(Hystrix): 일단은 API 한 통으로 하나로 묶고 다시 생각 (TODO)

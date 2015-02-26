@@ -1,8 +1,8 @@
 package metrix.connector.command.db;
 
 import static org.junit.Assert.*;
-
 import metrix.connector.command.EventType;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +12,8 @@ import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixCommandProperties.ExecutionIsolationStrategy;
 
 import metrix.connector.command.CommandExecutionCallback;
+import metrix.connector.command.trail.TrailContext;
+import metrix.connector.command.trail.TrailContextHolder;
 
 public class DBCommandTest {
 	
@@ -29,6 +31,8 @@ public class DBCommandTest {
 		
 		statementId = "testStatementId";
 		dbCommand = new DBCommand(statementId, mockCallback);
+		
+		TrailContextHolder.setTrailContext(new TrailContext());
 	}
 
 	@Test

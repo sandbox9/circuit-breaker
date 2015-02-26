@@ -1,6 +1,7 @@
 package com.netflix.hystrix.contrib.metrics.eventstream;
 
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -8,6 +9,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import metrix.connector.command.EventHistory;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;
@@ -149,11 +152,6 @@ public class MetrixMetricsPoller {
 					json.writeStringField("group", commandMetrics.getCommandGroup().name());
 					json.writeNumberField("currentTime", System.currentTimeMillis());
 					
-//					데이터 확장 지점
-					if(commandMetrics instanceof MetrixCommandMetrics) {
-						json.writeStringField("trailId",	((MetrixCommandMetrics)commandMetrics).getTrailId());
-					}
-
 					// circuit breaker
 					if (circuitBreaker == null) {
 						// circuit breaker is disabled and thus never open
@@ -242,7 +240,41 @@ public class MetrixMetricsPoller {
 					json.writeBooleanField("propertyValue_requestLogEnabled", commandProperties.requestLogEnabled().get());
 
 					json.writeNumberField("reportingHosts", 1); // this will get summed across all instances in a cluster
+					
+					
+//					데이터 확장 지점
+					if(commandMetrics instanceof MetrixCommandMetrics) {
 
+						json.writeArrayFieldStart("eventHistories");
+						
+						for (  EventHistory history : ((MetrixCommandMetrics)commandMetrics).getEventHistoryList()) {
+							json.writeStartObject();
+//							private String id;
+//							
+//							private int order;
+//							
+//							private Date time;
+//							
+//							private String status;
+//							
+//							private Throwable exception;
+//							
+							json.writeStringField("id", history.getId());
+							json.writeNumberField("order", history.getOrder());
+							json.writeStringField("time", history.getTime().toString());
+							json.writeStringField("status", history.getStatus());
+							if(history.getException() != null) {
+								json.writeStringField("exception", history.getException().getMessage());
+							} else {
+								json.writeStringField("exception", "");
+							}
+							
+							json.writeEndObject();
+						}
+						
+						json.writeEndArray();
+					}
+					
 					json.writeEndObject();
 					json.close();
 
